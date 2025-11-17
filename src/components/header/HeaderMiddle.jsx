@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import BookStoreContext from "../../context/bookStorContext";
 
 const HeaderMiddle = () => {
-  const { cartInfoLength } = useContext(BookStoreContext);
+  const { cartInfoLength, searchBook } = useContext(BookStoreContext);
+
   return (
     <div className="header-middle">
       <Link to="/" className="header-middle-logo">
@@ -11,14 +12,17 @@ const HeaderMiddle = () => {
         <i className="bi bi-book"></i>
         <b>Store</b>
       </Link>
+
       <div className="header-middle-search-box">
         <input
           className="header-middle-search-input"
           type="search"
           placeholder="Search in book store..."
+          onChange={(e) => searchBook(e.target.value)}
         />
         <i className="bi bi-search"></i>
       </div>
+
       <Link to="/cart" className="header-middle-cart-wrapper">
         {cartInfoLength > 0 && (
           <b className="cart-notification">{cartInfoLength}</b>
